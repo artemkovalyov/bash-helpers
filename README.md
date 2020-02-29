@@ -9,8 +9,10 @@ Bash scripts and snippets for mundane tasks
 
 ### Bash profile alias definitions
 
-`alias above="~/scripts/xrandr.sh above"
+```
+alias above="~/scripts/xrandr.sh above"
 alias below="~/scripts/xrandr.sh below"
 alias left="~/scripts/xrandr.sh left"
 alias right="~/scripts/xrandr.sh right"
-alias off="~/scripts/xrandr.sh off"`
+alias off="~/scripts/xrandr.sh off"
+```
