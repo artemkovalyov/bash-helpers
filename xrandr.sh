@@ -7,7 +7,7 @@ _EOF_
 
 XRNDR="xrandr"
 # select all the active outputs from xrandr log
-CONNECTED_OUTPUTS=$($XRNDR | grep " connected" | grep -o "\w*-[0-9]\b")
+CONNECTED_OUTPUTS=$($XRNDR | grep "\bconnected" | grep -P -o "\b\w+-\d?\b")
 
 if [ $(id -u) = "0" ]; then
     echo "superuser"
@@ -27,19 +27,19 @@ set_layout() {
   echo "${@:3}"
   case $1 in
     clone)
-      $XRNDR --output $3 --mode 1920x1080
+      $XRNDR --output $3 --auto
     ;;
     above)
-      $XRNDR --output $3 --mode 1920x1080 --above $2
+      $XRNDR --output $3 --auto --above $2
     ;;
     left)
-      $XRNDR --output $3 --mode 1920x1080 --left-of $2
+      $XRNDR --output $3 --auto --left-of $2
     ;;
     right)
-      $XRNDR --output $3 --mode 1920x1080 --right-of $2
+      $XRNDR --output $3 --auto --right-of $2
     ;;
     below)
-      $XRNDR --output $3 --mode 1920x1080 --below $2
+      $XRNDR --output $3 --auto --below $2
     ;;
     off)
       #switch off all the displays except the primary one (shift to the third param and loop through the outputs)
@@ -47,7 +47,6 @@ set_layout() {
         $XRNDR --output $i --off
       done
     ;;
-
 
   esac
 }
